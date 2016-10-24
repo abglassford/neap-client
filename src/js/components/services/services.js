@@ -8,7 +8,7 @@
   CoffeeService.$inject = ['$http'];
 
   function CoffeeService ($http) {
-    const baseUrl = `https://guarded-thicket-41107.herokuapp.com/coffee`;
+    const baseUrl = `https://guarded-thicket-41107.herokuapp.com/coffee/`;
 
     this.getAllCoffee = () => {
         return $http.get(baseUrl);
