@@ -5,14 +5,19 @@
     .module('myApp.services', [])
     .service('coffeeService', CoffeeService);
 
-    CoffeeService.$inject = ['$http'];
+  CoffeeService.$inject = ['$http'];
 
   function CoffeeService ($http) {
+    const baseUrl = `http://localhost:8000/coffee/`;
+
     this.getAllCoffee = () => {
-    return $http.get('https://guarded-thicket-41107.herokuapp.com/coffee')
-    }
-
-    this.test = 'this is a service';
-
+        return $http.get(baseUrl);
+      };
+    this.getSingleCoffee = (id) => {
+        return $http.get(`${baseUrl}${id}`);
+      };
+    this.addCoffee = (coffee) => {
+        return $http.post(baseUrl, coffee)
+      }
   }
 }());
