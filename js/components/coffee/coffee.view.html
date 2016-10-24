@@ -1,0 +1,64 @@
+<div class="row">
+  <h1>Coffee</h1>
+  <button type="button" name="button" class="btn btn-primary" ng-click="vm.showForm()">Add Coffee</button>
+
+  <br><br>
+
+  <form ng-if="vm.form" method="post" ng-submit="vm.addCoffee()">
+    <div class="form-group">
+      <label for="">Name</label>
+      <input ng-model="vm.coffeeObj.name" class="form-control"type="text" name="name" value="">
+    </div>
+    <div class="form-group">
+      <label for="">Roaster</label>
+      <input ng-model="vm.coffeeObj.roaster" class="form-control"type="text" name="roaster" value="">
+    </div>
+    <div class="form-group">
+      <label for="">Origin</label>
+      <input ng-model="vm.coffeeObj.origin" class="form-control"type="text" name="origin" value="">
+    </div>
+    <div class="form-group">
+      <label for="">Roast</label>
+      <input ng-model="vm.coffeeObj.roast" class="form-control"type="text" name="roast" value="">
+    </div>
+    <div class="form-group">
+      <label for="">Caffeine</label>
+      <input ng-model="vm.coffeeObj.caffeine" class="form-control"type="number" name="caffeine" value="">
+    </div>
+    <div class="form-group">
+      <label for="">Decaf</label>
+      <input ng-model="vm.coffeeObj.decaf" class="form-control"type="text" name="decaf" value="">
+    </div>
+    <div class="form-group">
+      <label for="">Price</label>
+      <input ng-model="vm.coffeeObj.price" class="form-control"type="number" name="price" value="">
+    </div>
+    <div class="form-group">
+      <label for="">Quantity</label>
+      <input ng-model="vm.coffeeObj.quantity" class="form-control"type="number" name="quantity" value="">
+    </div>
+    <button type="submit" class="btn btn-primary" name="button">Submit</button>
+  </form>
+
+  <br>
+
+  <table class="table table-striped">
+    <tr>
+      <th>Name</th>
+      <th>Roaster</th>
+      <th>Origin</th>
+      <th>Roast</th>
+      <th>Caffeine</th>
+      <th>Decaf</th>
+      <th>Price</th>
+    </tr>
+    <tr ng-repeat="coffee in vm.coffee">
+      <td>{{coffee.name}}</td>
+      <td>{{coffee.roaster}}</td>
+      <td>{{coffee.origin}}</td>
+      <td>{{coffee.roast}}</td>
+      <td>{{coffee.caffeine}}</td>
+      <td>{{coffee.decaf}}</td>
+      <td>{{coffee.price | currency}}</td>
+    </tr>
+  </table>
