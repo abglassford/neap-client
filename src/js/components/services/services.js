@@ -1,23 +1,54 @@
 (function() {
+
   'use strict';
 
   angular
     .module('myApp.services', [])
-    .service('coffeeService', CoffeeService);
+    .service('coffeeService', coffeeService)
+    .service('userService', userService);
 
-  CoffeeService.$inject = ['$http'];
+  coffeeService.$inject = ['$http'];
+  userService.$inject = ['$http'];
 
-  function CoffeeService ($http) {
-    const baseUrl = `https://guarded-thicket-41107.herokuapp.com/coffee/`;
-
-    this.getAllCoffee = () => {
-        return $http.get(baseUrl);
-      };
-    this.getSingleCoffee = (id) => {
-        return $http.get(`${baseUrl}${id}`);
-      };
-    this.addCoffee = (coffee) => {
-        return $http.post(baseUrl, coffee)
-      }
+  function coffeeService($http) {
+    /*jshint validthis: true */
+    const baseURL = 'http://localhost:8000/coffee/';
+    this.getAllCoffee = function() {
+      return $http.get(baseURL);
+    };
+    this.getSingleCoffee = function(id) {
+      return $http.get(`${baseURL}${id}`);
+    };
+    this.addCoffee = function(coffee) {
+      return $http({
+        method: 'POST',
+        url: baseURL,
+        data: coffee,
+        headers: {'Content-Type': 'application/json'}
+      });
+      // return $http.post(baseURL, coffee);
+    };
   }
-}());
+
+  function userService($http) {
+    /*jshint validthis: true */
+    const baseURL = 'http://localhost:8000/user/';
+    this.login = function(user) {
+      return $http({
+        method: 'POST',
+        url: baseURL + 'login',
+        data: user,
+        headers: {'Content-Type': 'application/json'}
+      });
+    };
+    this.register = function (user) {
+      return $http({
+        method: 'POST',
+        url: baseURL + 'register',
+        data: user,
+        headers: {'Content-Type': 'application/json'}
+      });
+    }
+  }
+
+})();
